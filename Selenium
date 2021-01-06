@@ -1,0 +1,894 @@
+package seleniumProjectPediatric;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class seleniumProject {
+
+	private static final String Script = "";
+	private static final Object Arguments = "";
+	
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\chromedriver\\driver\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://www.pediatricsys.somee.com/");
+		driver.manage().window().maximize();
+		JavascriptExecutor js = (JavascriptExecutor) driver;  
+		js.executeScript(Script,Arguments);
+		
+		//Login Form
+		js.executeScript("alert('LOGIN FORM');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+
+		
+		
+		//test case 1
+		js.executeScript("alert('Test Case 1: To check if register button will link to sign up form and if the form will close when the user clicks the exit button.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ExitButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/");
+		driver.findElement(By.id("Button1")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.id("LoginButton")).click();
+		Thread.sleep(2000);
+
+		//test case 2
+		js.executeScript("alert('Test Case 2: To check missing fields and if the given data is valid.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+
+		driver.findElement(By.id("PasswordTextBox")).sendKeys("PASS1");
+		driver.findElement(By.id("LoginButton")).submit();
+		driver.findElement(By.id("UsernameTextBox")).sendKeys("USER");
+		driver.findElement(By.id("UsernameTextBox")).submit();
+		driver.findElement(By.id("LoginButton")).click();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/");
+		driver.findElement(By.id("UsernameTextBox")).sendKeys("USER1");
+		driver.findElement(By.id("UsernameTextBox")).submit();
+		driver.findElement(By.id("PasswordTextBox")).sendKeys("PASS1");
+		driver.findElement(By.id("PasswordTextBox")).submit();
+		driver.findElement(By.id("LoginButton")).click();
+		Thread.sleep(2000);  
+		
+		
+		
+		//SIGNUP FORM
+		driver.get("http://www.pediatricsys.somee.com/Registration.aspx");
+		js.executeScript("alert('SIGN UP FORM');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		
+		
+		//test case 1
+		js.executeScript("alert('Test Case 1: To check if id number exist.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("EmployeeIDTextBox")).sendKeys("111");
+		driver.findElement(By.id("EmployeeIDTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("EmployeeIDTextBox")).clear();
+		driver.findElement(By.id("EmployeeIDTextBox")).sendKeys("200");
+		driver.findElement(By.id("EmployeeIDTextBox")).submit();// delete the 100 in database and change this to 100
+		//driver.findElement(By.id("EmployeeIDTextBox")).click();
+		Thread.sleep(2000);
+		//driver.switchTo().alert().accept();
+		
+		
+		
+		//test case 2
+		js.executeScript("alert('Test Case 2: To check if username exist.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("UsernameTextBox")).sendKeys("USER1");
+		driver.findElement(By.id("UsernameTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("UsernameTextBox")).clear();
+		driver.findElement(By.id("UsernameTextBox")).sendKeys("USER88");
+		driver.findElement(By.id("UsernameTextBox")).submit();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 3
+		js.executeScript("alert('Test Case 3: To check if the user input a password.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PasswordTextBox")).sendKeys("PASS99");
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 4
+		js.executeScript("alert('Test Case 4: To check if the user can register.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PasswordTextBox")).clear();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PasswordTextBox")).sendKeys("PASS99");
+		driver.findElement(By.id("RegisterButton")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("RegisterButton")).click();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		
+		
+		
+		
+		
+		
+		
+		
+		//Patient Registration Form
+		driver.get("http://www.pediatricsys.somee.com/PatientRegistrationForm.aspx");
+		js.executeScript("alert('PATIENT REGISTRATION FORM');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		
+		
+		
+		//test case 1
+		js.executeScript("alert('Test Case 1: To check if patient code does not exist.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT1");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PatientCodeTextBox")).clear();
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT500");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();// this should be PAT400 delete in database
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 2
+		js.executeScript("alert('Test Case 2: To check if the user provides a data in all fields.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PatientNameTextBox")).sendKeys("Anna Flores");
+		//driver.findElement(By.id("PatientNameTextBox")).sendKeys("Anna Flores");
+		driver.findElement(By.id("AddressTextBox")).sendKeys("Cebu City");
+		driver.findElement(By.id("TelephoneTextBox")).sendKeys("0908");
+		driver.findElement(By.id("FathersNameTextBox")).sendKeys("Dong Flores");
+		driver.findElement(By.id("MothersNameTextBox")).sendKeys("Nina Flores");
+		driver.findElement(By.id("GenderDropDownList")).sendKeys("Female");
+		driver.findElement(By.id("BirthdayTextBox")).sendKeys("01-01-2000");
+		driver.findElement(By.id("AgeTextBox")).sendKeys("20");
+		driver.findElement(By.id("WeightTextBox")).sendKeys("56");
+		driver.findElement(By.id("HeightTextBox")).sendKeys("135");
+		driver.findElement(By.id("EncodedByTextBox")).sendKeys("Lucy Espiritu");
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 3
+		js.executeScript("alert('Test Case 3: To save records.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("RegisterButton")).click();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 4
+		js.executeScript("alert('Test Case 4: To check if clear button will clear all the fields.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PatientNameTextBox")).sendKeys("Anna Flores");
+		//driver.findElement(By.id("PatientNameTextBox")).sendKeys("Anna Flores");
+		driver.findElement(By.id("AddressTextBox")).sendKeys("Cebu City");
+		driver.findElement(By.id("TelephoneTextBox")).sendKeys("0908");
+		driver.findElement(By.id("FathersNameTextBox")).sendKeys("Dong Flores");
+		driver.findElement(By.id("MothersNameTextBox")).sendKeys("Nina Flores");
+		driver.findElement(By.id("GenderDropDownList")).sendKeys("Female");
+		driver.findElement(By.id("BirthdayTextBox")).sendKeys("01-01-2000");
+		driver.findElement(By.id("AgeTextBox")).sendKeys("20");
+		driver.findElement(By.id("WeightTextBox")).sendKeys("56");
+		driver.findElement(By.id("HeightTextBox")).sendKeys("135");
+		driver.findElement(By.id("EncodedByTextBox")).sendKeys("Lucy Espiritu");
+		Thread.sleep(2000);
+		driver.findElement(By.id("ClearButton")).click();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 5
+		js.executeScript("alert('Test Case 5: To check if Link buttons work.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ImmunizationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.id("ConsultationLinkButton")).click();
+		Thread.sleep(2000);
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//Immunization Form
+		driver.get("http://www.pediatricsys.somee.com/ImmunizationEntry.aspx");
+		  js.executeScript("alert('IMMUNIZATION FORM');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		
+		
+		
+		//test case 1
+		js.executeScript("alert('Test Case 1: To check if immunization code and patient code already exist.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ImmunizationCodeTextBox")).sendKeys("IMMU1");
+		driver.findElement(By.id("ImmunizationCodeTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("ImmunizationCodeTextBox")).clear();
+		driver.findElement(By.id("ImmunizationCodeTextBox")).sendKeys("CODE1");
+		driver.findElement(By.id("ImmunizationCodeTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT1");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		driver.findElement(By.id("DateTextBox0")).sendKeys("03-01-2021");
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 2
+		js.executeScript("alert('Test Case 2: To check if vaccine code already exists in data grid and if data grid can add a row whenever a new vaccine is recorded.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("VaccineCodeTextBox")).sendKeys("VAC1");
+		driver.findElement(By.id("VaccineCodeTextBox")).submit();
+		Thread.sleep(1000);
+		driver.findElement(By.id("ShotNumberTextBox")).sendKeys("3");
+		driver.findElement(By.id("ShotNumberTextBox")).submit();
+		Thread.sleep(1000);
+		driver.findElement(By.id("ReactionTextBox")).sendKeys("fatique");
+		driver.findElement(By.id("ReactionTextBox")).submit();
+		
+		driver.findElement(By.id("VaccineCodeTextBox")).clear();
+		driver.findElement(By.id("ShotNumberTextBox")).clear();
+		driver.findElement(By.id("ReactionTextBox")).clear();
+		
+		
+		driver.findElement(By.id("VaccineCodeTextBox")).sendKeys("VAC1");
+		Thread.sleep(2000);
+		driver.findElement(By.id("VaccineCodeTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("VaccineCodeTextBox")).sendKeys("VAC2");
+		driver.findElement(By.id("VaccineCodeTextBox")).submit();
+		Thread.sleep(1000);
+		driver.findElement(By.id("ShotNumberTextBox")).sendKeys("2");
+		driver.findElement(By.id("ShotNumberTextBox")).submit();
+		Thread.sleep(1000);
+		driver.findElement(By.id("ReactionTextBox")).sendKeys("Red Eye");
+		driver.findElement(By.id("ReactionTextBox")).submit();
+		
+		driver.findElement(By.id("VaccineCodeTextBox")).clear();
+		driver.findElement(By.id("ShotNumberTextBox")).clear();
+		driver.findElement(By.id("ReactionTextBox")).clear();
+		
+		
+		
+		//test case 3	
+		js.executeScript("alert('Test Case 3: To check Prepared By and Immunized By textboxes');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PreparedByTextBox")).sendKeys("EMP3");
+		driver.findElement(By.id("PreparedByTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PreparedByTextBox")).clear();
+		driver.findElement(By.id("PreparedByTextBox")).sendKeys("EMP2");
+		driver.findElement(By.id("PreparedByTextBox")).submit();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.id("ImmunizedByTextBox")).sendKeys("EMP2");
+		driver.findElement(By.id("ImmunizedByTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("ImmunizedByTextBox")).clear();
+		driver.findElement(By.id("ImmunizedByTextBox")).sendKeys("EMP1");
+		driver.findElement(By.id("ImmunizedByTextBox")).submit();
+		Thread.sleep(2000);
+		
+
+		//test case 4
+		js.executeScript("alert('Test Case 4: To save records.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("SaveButton")).click();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		
+		
+		//test case 5
+		js.executeScript("alert('Test Case 5: To check if clear button will function.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT1");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		driver.findElement(By.id("VaccineCodeTextBox")).sendKeys("VAC1");
+		driver.findElement(By.id("VaccineCodeTextBox")).submit();
+		driver.findElement(By.id("ShotNumberTextBox")).sendKeys("2");
+		driver.findElement(By.id("ShotNumberTextBox")).submit();
+		driver.findElement(By.id("ReactionTextBox")).sendKeys("Red Eye");
+		driver.findElement(By.id("ReactionTextBox")).submit();
+		Thread.sleep(2000);
+		//driver.findElement(By.id("PreparedByTextBox")).sendKeys("");
+		//driver.findElement(By.id("ImmunizedByTextBox")).sendKeys("");
+		//Thread.sleep(2000);
+		driver.findElement(By.id("ClearButton")).click();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 6
+		js.executeScript("alert('Test Case 6: To check if patient registration, consultation and billing button link will link to its form.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ConsultationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/ImmunizationEntry.aspx");
+		driver.findElement(By.id("RegistrationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/ImmunizationEntry.aspx");
+		driver.findElement(By.id("BillingLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/ImmunizationEntry.aspx");
+		Thread.sleep(2000);
+		
+		
+		
+		
+		//test case 7
+		js.executeScript("alert('Test Case 7: To check if the exit button will function.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ExitButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/ImmunizationEntry.aspx");
+		Thread.sleep(2000);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//consultation Form
+		driver.get("http://www.pediatricsys.somee.com/ConsultationEntry.aspx");
+		  js.executeScript("alert('CONSULTATION FORM');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		
+		
+		//test case 1
+		js.executeScript("alert('Test Case 1: To check if consultation number already exist.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ConsultationNoTextBox")).sendKeys("CON1");
+		driver.findElement(By.id("ConsultationNoTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("ConsultationNoTextBox")).clear();
+		driver.findElement(By.id("ConsultationNoTextBox")).sendKeys("CON101");
+		driver.findElement(By.id("ConsultationNoTextBox")).submit();
+		Thread.sleep(2000);
+		
+
+		
+		//test case 2
+		js.executeScript("alert('Test Case 2: To check if immunization number exist or does not exist therefore you can create a new record');");
+		Thread.sleep(4000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ImmunizationTextBox")).sendKeys("IMMU2");
+		driver.findElement(By.id("ImmunizationTextBox")).submit();
+		Thread.sleep(3000);
+		//driver.findElement(By.id("ImmunizationTextBox")).clear();
+		driver.findElement(By.id("ClearButton")).click();
+		js.executeScript("alert('The immunization number existed so records were found');");
+		Thread.sleep(3000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ConsultationNoTextBox")).sendKeys("CON101");
+		driver.findElement(By.id("ConsultationNoTextBox")).submit();
+		driver.findElement(By.id("ImmunizationTextBox")).sendKeys("IMMU101");
+		driver.findElement(By.id("ImmunizationTextBox")).submit();
+		js.executeScript("alert('The immunization number did not exist so records were NOT found');");
+		Thread.sleep(3000);
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		
+		
+		//test case 3
+		js.executeScript("alert('Test Case 3: To check if patient number does not exist.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT5");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PatientCodeTextBox")).clear();
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT1");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		driver.findElement(By.id("BodyTempTextBox")).sendKeys("35");
+		driver.findElement(By.id("BodyTempTextBox")).submit();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 4
+		js.executeScript("alert('Test Case 4: To check if vaccine code already exists in data grid and if data grid can add a row whenever a new vaccine is recorded.');");
+		Thread.sleep(3000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("DiagnosisTextBox")).sendKeys("DIAG1");
+		driver.findElement(By.id("DiagnosisTextBox")).submit();
+		Thread.sleep(1500);
+		driver.findElement(By.id("PhysiciansNotesTextBox")).sendKeys("Dengue");
+		driver.findElement(By.id("PhysiciansNotesTextBox")).submit();
+		Thread.sleep(1000);
+		
+		driver.findElement(By.id("DiagnosisTextBox")).clear();
+		driver.findElement(By.id("PhysiciansNotesTextBox")).clear();
+		
+		driver.findElement(By.id("DiagnosisTextBox")).sendKeys("DIAG1");
+		driver.findElement(By.id("DiagnosisTextBox")).submit();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.id("DiagnosisTextBox")).sendKeys("DIAG2");
+		driver.findElement(By.id("DiagnosisTextBox")).submit();
+		Thread.sleep(1000);
+		driver.findElement(By.id("PhysiciansNotesTextBox")).sendKeys("Fever");
+		driver.findElement(By.id("PhysiciansNotesTextBox")).submit();
+		Thread.sleep(1000);
+		
+		driver.findElement(By.id("DiagnosisTextBox")).clear();
+		driver.findElement(By.id("PhysiciansNotesTextBox")).clear();
+		Thread.sleep(2000);
+		
+		
+		//test case 5	
+		js.executeScript("alert('Test Case 5: To check Prepared By and Examined By textboxes');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PreparedByTextBox")).sendKeys("EMP3");
+		driver.findElement(By.id("PreparedByTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PreparedByTextBox")).clear();
+		driver.findElement(By.id("PreparedByTextBox")).sendKeys("EMP2");
+		driver.findElement(By.id("PreparedByTextBox")).submit();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.id("ExaminedByTextBox")).sendKeys("EMP2");
+		driver.findElement(By.id("ExaminedByTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("ExaminedByTextBox")).clear();
+		driver.findElement(By.id("ExaminedByTextBox")).sendKeys("EMP1");
+		driver.findElement(By.id("ExaminedByTextBox")).submit();
+		driver.findElement(By.id("DateTextBox")).sendKeys("03-01-2021");
+		
+		Thread.sleep(2000);
+		
+
+		//test case 6
+		js.executeScript("alert('Test Case 6: To save records.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("SaveButton")).click();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 7
+		js.executeScript("alert('Test Case 7: To check if clear button will function.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ConsultationNoTextBox")).sendKeys("CON102");
+		driver.findElement(By.id("ConsultationNoTextBox")).submit();
+		driver.findElement(By.id("ImmunizationTextBox")).sendKeys("IMMU102");
+		driver.findElement(By.id("ImmunizationTextBox")).submit();
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT1");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		driver.findElement(By.id("DiagnosisTextBox")).sendKeys("DIAG1");
+		driver.findElement(By.id("DiagnosisTextBox")).submit();
+		driver.findElement(By.id("PhysiciansNotesTextBox")).sendKeys("Example");
+		driver.findElement(By.id("PhysiciansNotesTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("ClearButton")).click();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 8
+		js.executeScript("alert('Test Case 8: To check if patient registration, immunization and billing button link will link to its form.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ImmunizationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/ConsultationEntry.aspx");
+		driver.findElement(By.id("RegistrationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/ConsultationEntry.aspx");
+		driver.findElement(By.id("BillingLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/ConsultationEntry.aspx");
+		Thread.sleep(2000);
+		
+		
+		
+		
+		//test case 9
+		js.executeScript("alert('Test Case 9: To check if the exit button will function.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ExitButton")).click();
+		Thread.sleep(1000);
+		driver.get("http://www.pediatricsys.somee.com/ConsultationEntry.aspx");
+		Thread.sleep(2000);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 
+		
+		//Billing Form
+		driver.get("http://www.pediatricsys.somee.com/BillingForm.aspx");
+		 js.executeScript("alert('BILLING FORM');");
+		Thread.sleep(4000);
+		driver.switchTo().alert().accept();
+		
+		//test case 1
+		js.executeScript("alert('Test Case 1: To check if billing number and patient code exist.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("BillingNoTextBox")).sendKeys("BILLING1");
+		driver.findElement(By.id("BillingNoTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("BillingNoTextBox")).clear();
+		driver.findElement(By.id("BillingNoTextBox")).sendKeys("BILLING101");
+		driver.findElement(By.id("BillingNoTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT101");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PatientCodeTextBox")).clear();
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT1");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		driver.findElement(By.id("DateTextBox")).sendKeys("03-01-2021");
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 2
+		js.executeScript("alert('Test Case 2: To check if immunization number already exists in data grid and if data grid can add a row whenever a new vaccine is recorded.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ImmunizationNoTextBox")).sendKeys("IMMU1");
+		driver.findElement(By.id("ImmunizationNoTextBox")).submit();
+		Thread.sleep(1000);
+		driver.findElement(By.id("ImmunizationNoTextBox")).clear();
+		driver.findElement(By.id("ImmunizationNoTextBox")).sendKeys("IMMU1");
+		driver.findElement(By.id("ImmunizationNoTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("ImmunizationNoTextBox")).clear();
+		driver.findElement(By.id("ImmunizationNoTextBox")).sendKeys("IMMU2");
+		driver.findElement(By.id("ImmunizationNoTextBox")).submit();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 3	
+		js.executeScript("alert('Test Case 3: To check Prepared By and Immunized By textboxes');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PreparedByTextBox")).sendKeys("EMP3");
+		driver.findElement(By.id("PreparedByTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PreparedByTextBox")).clear();
+		driver.findElement(By.id("PreparedByTextBox")).sendKeys("EMP2");
+		driver.findElement(By.id("PreparedByTextBox")).submit();
+		Thread.sleep(2000);
+		
+		driver.findElement(By.id("ExaminedByTextBox")).sendKeys("EMP2");
+		driver.findElement(By.id("ExaminedByTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("ExaminedByTextBox")).clear();
+		driver.findElement(By.id("ExaminedByTextBox")).sendKeys("EMP1");
+		driver.findElement(By.id("ExaminedByTextBox")).submit();
+		Thread.sleep(2000);
+		
+
+		//test case 4
+		js.executeScript("alert('Test Case 4: To save records.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("save")).click();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		
+		
+		//test case 5
+		js.executeScript("alert('Test Case 5: To check if clear button will function.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("BillingNoTextBox")).sendKeys("BILLING102");
+		driver.findElement(By.id("BillingNoTextBox")).submit();
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT1");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		driver.findElement(By.id("ImmunizationNoTextBox")).sendKeys("IMMU1");
+		driver.findElement(By.id("ImmunizationNoTextBox")).submit();
+		driver.findElement(By.id("PreparedByTextBox")).sendKeys("EMP1");
+		driver.findElement(By.id("PreparedByTextBox")).submit();
+		driver.findElement(By.id("ExaminedByTextBox")).sendKeys("EMP1");
+		driver.findElement(By.id("ExaminedByTextBox")).submit();
+		Thread.sleep(2000);
+		//driver.findElement(By.id("PreparedByTextBox")).sendKeys("");
+		//driver.findElement(By.id("ImmunizedByTextBox")).sendKeys("");
+		//Thread.sleep(2000);
+		driver.findElement(By.id("ClearButton")).click();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 6
+		js.executeScript("alert('Test Case 6: To check if patient registration, consultation, immunization and prescription button link will link to its form.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ConsultationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/BillingForm.aspx");
+		driver.findElement(By.id("RegistrationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/BillingForm.aspx");
+		driver.findElement(By.id("ImmunizationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/BillingForm.aspx");
+		driver.findElement(By.id("PrescriptionLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/BillingForm.aspx");
+		Thread.sleep(2000);
+		
+		
+		
+		
+		//test case 7
+		js.executeScript("alert('Test Case 7: To check if the exit button will function.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ExitButton")).click();
+		Thread.sleep(1000);
+		driver.get("http://www.pediatricsys.somee.com/BillingForm.aspx");
+		Thread.sleep(2000);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//Prescription Form
+		
+		driver.get("http://www.pediatricsys.somee.com/PrescriptionForm.aspx");
+		js.executeScript("alert('PRESCRIPTION FORM');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		
+		
+		
+		//test case 1
+		js.executeScript("alert('Test Case 1: To check if prescription number already exist.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PrescriptionNoTextBox")).sendKeys("PRESCRIP1");
+		driver.findElement(By.id("PrescriptionNoTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PrescriptionNoTextBox")).clear();
+		driver.findElement(By.id("PrescriptionNoTextBox")).sendKeys("PRESCRIP101");
+		driver.findElement(By.id("PrescriptionNoTextBox")).submit();
+		driver.findElement(By.id("DateTextBox")).sendKeys("03-01-2021");
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 2		
+		js.executeScript("alert('Test Case 2: To check if consultation number exist or does not exist therefore you can create a new record');");
+		Thread.sleep(4000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ConsultationNoTextBox")).sendKeys("CON2");
+		driver.findElement(By.id("ConsultationNoTextBox")).submit();
+		Thread.sleep(3000);
+		//driver.findElement(By.id("ImmunizationTextBox")).clear();
+		driver.findElement(By.id("ClearButton")).click();
+		js.executeScript("alert('The consultation number existed so patient records were found');");
+		Thread.sleep(3000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PrescriptionNoTextBox")).sendKeys("PRESCRIP10");
+		driver.findElement(By.id("PrescriptionNoTextBox")).submit();
+		driver.findElement(By.id("ConsultationNoTextBox")).sendKeys("CON101");
+		driver.findElement(By.id("ConsultationNoTextBox")).submit();
+		driver.findElement(By.id("PatientCodeTextBox")).clear();
+		
+		js.executeScript("alert('The consultation number did not exist so records were NOT found');");
+		Thread.sleep(3000);
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 3
+		js.executeScript("alert('Test Case 3: To check if patient code exists.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT101");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PatientCodeTextBox")).sendKeys("PAT2");
+		driver.findElement(By.id("PatientCodeTextBox")).submit();
+		driver.findElement(By.id("DateTextBox")).sendKeys("03-01-2021");
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 4
+		js.executeScript("alert('Test Case 4: To check if medicine code exists.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("MedicineCodeTextBox")).sendKeys("555");
+		driver.findElement(By.id("MedicineCodeTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("MedicineCodeTextBox")).sendKeys("MED1");
+		driver.findElement(By.id("MedicineCodeTextBox")).submit();
+		Thread.sleep(2000);
+		
+		
+		
+	
+		//test case 5
+		js.executeScript("alert('Test Case 5: To check if the user can add another medicine code and to see if it exists on datagrid');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("QuantityTextBox")).sendKeys("3");
+		driver.findElement(By.id("QuantityTextBox")).submit();
+		Thread.sleep(1000);
+		driver.findElement(By.id("RemarksTextBox")).sendKeys("Every 5 hours");
+		driver.findElement(By.id("RemarksTextBox")).submit();
+		Thread.sleep(1000);
+		
+		driver.findElement(By.id("MedicineCodeTextBox")).clear();
+		driver.findElement(By.id("QuantityTextBox")).clear();
+		driver.findElement(By.id("RemarksTextBox")).clear();
+		
+		driver.findElement(By.id("MedicineCodeTextBox")).sendKeys("MED1");
+		driver.findElement(By.id("MedicineCodeTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("MedicineCodeTextBox")).clear();
+		driver.findElement(By.id("MedicineCodeTextBox")).sendKeys("MED2");
+		driver.findElement(By.id("MedicineCodeTextBox")).submit();
+		Thread.sleep(1000);
+		driver.findElement(By.id("QuantityTextBox")).sendKeys("3");
+		driver.findElement(By.id("QuantityTextBox")).submit();
+		Thread.sleep(1000);
+		driver.findElement(By.id("RemarksTextBox")).sendKeys("Every 10 hours");
+		driver.findElement(By.id("RemarksTextBox")).submit();
+		Thread.sleep(1000);
+		
+		
+		
+		//test case 6
+		js.executeScript("alert('Test Case 6: To check Prepared By textbox');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PreparedByTextBox")).sendKeys("EMP3");
+		driver.findElement(By.id("PreparedByTextBox")).submit();
+		Thread.sleep(2000);
+		driver.findElement(By.id("PreparedByTextBox")).clear();
+		driver.findElement(By.id("PreparedByTextBox")).sendKeys("EMP2");
+		driver.findElement(By.id("PreparedByTextBox")).submit();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 7
+		js.executeScript("alert('Test Case 7: To save records.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("SaveButton")).click();
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		Thread.sleep(2000);
+		
+		
+		//test case 8
+		js.executeScript("alert('Test Case 8: To check if clear button will function.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("PrescriptionNoTextBox")).sendKeys("BILLING1000");
+		driver.findElement(By.id("PrescriptionNoTextBox")).submit();
+		driver.findElement(By.id("ConsultationNoTextBox")).sendKeys("CON2");
+		driver.findElement(By.id("ConsultationNoTextBox")).submit();
+		driver.findElement(By.id("MedicineCodeTextBox")).sendKeys("MED1");
+		driver.findElement(By.id("MedicineCodeTextBox")).submit();
+		driver.findElement(By.id("QuantityTextBox")).sendKeys("3");
+		driver.findElement(By.id("QuantityTextBox")).submit();
+		driver.findElement(By.id("RemarksTextBox")).sendKeys("1x a day");
+		driver.findElement(By.id("RemarksTextBox")).submit();
+		Thread.sleep(2000);
+		//driver.findElement(By.id("PreparedByTextBox")).sendKeys("");
+		//driver.findElement(By.id("ImmunizedByTextBox")).sendKeys("");
+		//Thread.sleep(2000);
+		driver.findElement(By.id("ClearButton")).click();
+		Thread.sleep(2000);
+		
+		
+		
+		//test case 9
+		js.executeScript("alert('Test Case 9: To check if patient registration, consultation, and billing button link will link to its form.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ConsultationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/PrescriptionForm.aspx");
+		driver.findElement(By.id("RegistrationLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/PrescriptionForm.aspx");
+		driver.findElement(By.id("BillingLinkButton")).click();
+		Thread.sleep(2000);
+		driver.get("http://www.pediatricsys.somee.com/PrescriptionForm.aspx");
+		Thread.sleep(2000);
+		
+		
+		
+		
+		//test case 10
+		js.executeScript("alert('Test Case 10: To check if the exit button will function.');");
+		Thread.sleep(2000);
+		driver.switchTo().alert().accept();
+		driver.findElement(By.id("ExitButton")).click();
+		Thread.sleep(1000);
+		driver.get("http://www.pediatricsys.somee.com/PrescriptionForm.aspx");
+		Thread.sleep(2000);
+
+		
+	}
+
+}
